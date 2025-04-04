@@ -1,0 +1,9 @@
+/uploaded_data
+/milvus_docs
+milvus_demo.db
+milvus_docs_2.4.x_en.zip
+milvus_docs.zip
+.DS_store
+.aptos
+__pycache__
+build
