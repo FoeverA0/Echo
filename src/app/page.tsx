@@ -2,6 +2,7 @@
 import React from "react";
 import { Button } from "@/components/ui/button";
 import Navbar from "@/components/Navbar";
+import AutoScrollCarousel from "@/components/AutoScrollCarousel";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { Stars, Rocket, BrainCircuit, Lock, Gem } from "lucide-react";
 import { useRef, useState } from "react";
@@ -9,7 +10,6 @@ import { useEffect } from "react";
 import Particles from "@/components/Particles";
 import Particles3D from "@/components/Particles3D" // 使用方案2
 import dynamic from "next/dynamic";
-
 // 动态加载3D组件以减少初始加载
 const Dynamic3DModel = dynamic(() => import("@/components/Particles3D"), {
   ssr: false,
@@ -36,7 +36,48 @@ const features = [
     uri: "/features/market.png",
   },
 ];
-
+const knowledgeAssets = [
+  {
+    type: "Research Paper",
+    title: "Blockchain-based Knowledge Provenance",
+    author: "Dr. Zhang et al.",
+    image: "/showcase/paper1.png",
+    desc: "Peer-reviewed paper on blockchain for academic attribution",
+    status: "Tokenized"
+  },
+  {
+    type: "Investment Report",
+    title: "Web3 Knowledge Economy Outlook 2024",
+    author: "Echo Analytics",
+    image: "/showcase/report1.jpg",
+    desc: "Comprehensive analysis of knowledge tokenization trends",
+    status: "Available"
+  },
+  {
+    type: "Patent",
+    title: "TEE-based Knowledge Access Control",
+    author: "Echo Labs",
+    image: "/showcase/patent1.jpg",
+    desc: "Patent pending for privacy-preserving knowledge access",
+    status: "Licensable"
+  },
+  {
+    type: "Book",
+    title: "The Tokenized Knowledge Revolution",
+    author: "Prof. Li",
+    image: "/showcase/book1.jpg",
+    desc: "First edition with NFT-based ownership verification",
+    status: "Sold Out"
+  },
+  {
+    type: "White Paper",
+    title: "RWA for Intellectual Property",
+    author: "Echo Core Team",
+    image: "/showcase/whitepaper.png",
+    desc: "Technical specification for IP tokenization standard",
+    status: "Free Access"
+  }
+]
 export default function AboutPage() {
   const containerRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
@@ -189,10 +230,70 @@ export default function AboutPage() {
             </motion.div>
           </div>
         </div>
-
+        <motion.div 
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
+          className="mt-16 mb-24"
+        >
+          <h3 className="text-2xl font-bold text-center mb-8 text-cyan-300">
+            Knowledge Assets Showcase
+          </h3>
+          
+          {/* 横向滚动容器 */}
+          <div className="relative max-w-7xl mx-auto">
+            {/* 渐变遮罩 */}
+            <div className="absolute inset-y-0 left-0 w-16 bg-gradient-to-r from-gray-900/80 to-transparent z-10 pointer-events-none blur-sm animate-pulse"></div>
+            <div className="absolute inset-y-0 right-0 w-16 bg-gradient-to-l from-gray-900/80 to-transparent z-10 pointer-events-none blur-sm animate-pulse"></div>
+            
+            {/* 自动滚动容器 */}
+            <div className="overflow-hidden relative">
+              <AutoScrollCarousel>
+                {knowledgeAssets.map((item, index) => (
+                  <div 
+                    key={index}
+                    className="w-[calc(20%-12px)] flex-shrink-0 mx-1.5" // 每次显示两个，间距3
+                  >
+                    <motion.div 
+                      whileHover={{ scale: 1.02 }}
+                      className="h-full bg-gray-900/80 rounded-xl overflow-hidden border border-gray-800 hover:border-cyan-500/50 transition-all duration-300"
+                    >
+                      <div className="h-48 relative overflow-hidden">
+                        <img 
+                          src={item.image} 
+                          alt={item.title}
+                          className="w-full h-full object-cover"
+                        />
+                        <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 to-transparent p-4">
+                          {/* 模糊背景 */}
+                          <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/30 to-transparent backdrop-blur-md rounded-lg"></div>
+                          <div className="relative">
+                            <span className="text-xs font-semibold text-cyan-400">{item.type}</span>
+                            <h4 className="text-lg font-bold text-white line-clamp-1">{item.title}</h4>
+                          </div>
+                        </div>
+                        <div className="absolute top-2 right-2 px-2 py-1 bg-gray-900/80 rounded-full text-xs font-medium text-cyan-400">
+                          {item.status}
+                        </div>
+                      </div>
+                      <div className="p-4">
+                        <p className="text-sm text-gray-400 mb-2">By {item.author}</p>
+                        <p className="text-gray-300 text-sm line-clamp-2">{item.desc}</p>
+                        <button className="mt-3 w-full py-2 bg-cyan-500/10 hover:bg-cyan-500/20 text-cyan-400 rounded-lg text-sm font-medium transition-colors">
+                          Coming Soon
+                        </button>
+                      </div>
+                    </motion.div>
+                  </div>
+                ))}
+              </AutoScrollCarousel>
+            </div>
+          </div>
+        </motion.div>
         {/* 合作伙伴视差区域 */}
         <motion.div 
-          className="py-24 relative"
+          className="py-12 relative"
           style={{ y: y2 }}
         >
           <div className="max-w-7xl mx-auto px-6">
@@ -298,10 +399,141 @@ export default function AboutPage() {
             </div>
           </div>
         </motion.div>
+        <motion.div 
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
+          style={{ y: y3 }}
+          className="py-12 relative"
+        >
+          <div className="max-w-7xl mx-auto px-6">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-purple-500 mb-4">
+                Monetization Showcase
+              </h2>
+              <p className="text-xl text-gray-400 max-w-3xl mx-auto">
+                Real-world examples of knowledge assets generating revenue
+              </p>
+            </div>
 
+            {/* 图片展示案例 */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {/* 案例1 - 专利获利 */}
+              <motion.div
+                whileHover={{ y: -5 }}
+                className="bg-gray-900/80 rounded-xl overflow-hidden border border-gray-800 hover:border-cyan-500/50 transition-all duration-300 group"
+              >
+                <div className="h-48 relative overflow-hidden">
+                  <img 
+                    src="/showcase/patent-monetization.jpg" 
+                    alt="Patent Monetization"
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent p-6 flex flex-col justify-end">
+                    <span className="text-xs font-semibold text-cyan-400 mb-1">TECHNOLOGY PATENT</span>
+                    <h3 className="text-lg font-bold text-white">AI Algorithm Licensing</h3>
+                  </div>
+                  <div className="absolute top-4 right-4 px-2 py-1 bg-cyan-500/20 backdrop-blur-sm rounded-full text-xs font-medium text-cyan-400">
+                    $220K/yr
+                  </div>
+                </div>
+                <div className="p-6">
+                  <p className="text-gray-400 mb-4">
+                    University of Hong Kong generates recurring revenue by licensing their patented 
+                    AI algorithms through Echo's smart contract system
+                  </p>
+                  <div className="flex items-center text-sm text-cyan-400">
+                    <span>View Case Study →</span>
+                  </div>
+                </div>
+              </motion.div>
+
+              {/* 案例2 - 版权获利 */}
+              <motion.div
+                whileHover={{ y: -5 }}
+                className="bg-gray-900/80 rounded-xl overflow-hidden border border-gray-800 hover:border-purple-500/50 transition-all duration-300 group"
+              >
+                <div className="h-48 relative overflow-hidden">
+                  <img 
+                    src="/showcase/copyright-earnings.png" 
+                    alt="Copyright Earnings"
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent p-6 flex flex-col justify-end">
+                    <span className="text-xs font-semibold text-purple-400 mb-1">DIGITAL PUBLISHING</span>
+                    <h3 className="text-lg font-bold text-white">E-book Royalties</h3>
+                  </div>
+                  <div className="absolute top-4 right-4 px-2 py-1 bg-purple-500/20 backdrop-blur-sm rounded-full text-xs font-medium text-purple-400">
+                    $75K/quarter
+                  </div>
+                </div>
+                <div className="p-6">
+                  <p className="text-gray-400 mb-4">
+                    Author monetizes out-of-print textbooks as NFT editions, earning royalties 
+                    from secondary market sales and micro-licenses
+                  </p>
+                  <div className="flex items-center text-sm text-purple-400">
+                    <span>View Case Study →</span>
+                  </div>
+                </div>
+              </motion.div>
+
+              {/* 案例3 - 投研报告获利 */}
+              <motion.div
+                whileHover={{ y: -5 }}
+                className="bg-gray-900/80 rounded-xl overflow-hidden border border-gray-800 hover:border-pink-500/50 transition-all duration-300 group"
+              >
+                <div className="h-48 relative overflow-hidden">
+                  <img 
+                    src="/showcase/research-revenue.jpg" 
+                    alt="Research Revenue"
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent p-6 flex flex-col justify-end">
+                    <span className="text-xs font-semibold text-pink-400 mb-1">MARKET RESEARCH</span>
+                    <h3 className="text-lg font-bold text-white">Crypto Market Analysis</h3>
+                  </div>
+                  <div className="absolute top-4 right-4 px-2 py-1 bg-pink-500/20 backdrop-blur-sm rounded-full text-xs font-medium text-pink-400">
+                    $150K/month
+                  </div>
+                </div>
+                <div className="p-6">
+                  <p className="text-gray-400 mb-4">
+                    Hedge fund monetizes proprietary research through tiered access 
+                    subscriptions with TEE-protected content delivery
+                  </p>
+                  <div className="flex items-center text-sm text-pink-400">
+                    <span>View Case Study →</span>
+                  </div>
+                </div>
+              </motion.div>
+            </div>
+
+            {/* 更多案例链接 */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              transition={{ delay: 0.3, duration: 0.8 }}
+              viewport={{ once: true }}
+              className="mt-12 text-center"
+            >
+              <a 
+                href="#"
+                className="inline-flex items-center px-6 py-3 border border-cyan-500/30 rounded-full text-cyan-400 hover:bg-cyan-500/10 transition-colors"
+              >
+                Explore More Revenue Cases
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 ml-2" viewBox="0 0 20 20" fill="currentColor">
+                  <path fillRule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clipRule="evenodd" />
+                </svg>
+              </a>
+            </motion.div>
+          </div>
+        </motion.div>
         {/* 团队成员背景区域 */}
         <motion.div 
-          className="py-24 relative overflow-hidden"
+          className="py-12 relative overflow-hidden"
+          style={{ y: y3 }}
         >
           <div className="absolute inset-0 bg-[url('/grid.svg')] bg-center [mask-image:linear-gradient(180deg,white,rgba(255,255,255,0))] opacity-10"></div>
           
@@ -362,7 +594,8 @@ export default function AboutPage() {
 
         {/* FAQ 区域 */}
         <motion.div 
-          className="py-24 relative"
+          className="py-12 relative"
+          style={{ y: y3 }}
         >
           <div className="max-w-5xl mx-auto px-6">
             <motion.div
