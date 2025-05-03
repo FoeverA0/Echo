@@ -226,14 +226,14 @@ export default function AboutPage() {
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ delay: 1, duration: 1 }}
-                  className="mt-10 flex gap-4"
+                  className="mt-10 flex flex-wrap gap-4 justify-center"
                 >
-                  <Button className="relative overflow-hidden group bg-gradient-to-r from-cyan-500 to-purple-500 hover:from-purple-500 hover:to-cyan-500 text-black px-8 py-4 rounded-full text-lg font-bold shadow-lg transform hover:scale-105 transition-all duration-300">
+                  <Button className="relative overflow-hidden group bg-gradient-to-r from-cyan-500 to-purple-500 hover:from-purple-500 hover:to-cyan-500 text-black px-8 py-4 rounded-full text-lg font-bold shadow-lg transform hover:scale-105 transition-all duration-300 w-full sm:w-auto min-w-[200px]">
                     <span className="relative z-10">Discover Our Vision</span>
                     <span className="absolute inset-0 bg-white opacity-0 group-hover:opacity-10 transition-opacity duration-300"></span>
                   </Button>
                   
-                  <Button variant="outline" className="relative overflow-hidden group border-2 border-cyan-400/50 bg-transparent text-white px-8 py-4 rounded-full text-lg font-bold hover:bg-cyan-500/10 hover:border-cyan-400 transition-all duration-300">
+                  <Button variant="outline" className="relative overflow-hidden group border-2 border-cyan-400/50 bg-transparent text-white px-8 py-4 rounded-full text-lg font-bold hover:bg-cyan-500/10 hover:border-cyan-400 transition-all duration-300 w-full sm:w-auto min-w-[200px]">
                     <span className="relative z-10 flex items-center gap-2">
                       <Rocket className="w-5 h-5" />
                       Join Waitlist
