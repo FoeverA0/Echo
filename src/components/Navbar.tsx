@@ -1,12 +1,24 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { motion, useScroll, useMotionValueEvent } from "framer-motion";
 import { Stars, Rocket, Code2, ShieldCheck, Home } from "lucide-react";
-
+import { ChevronDown } from "lucide-react";
 export default function Navbar() {
   const [activeLink, setActiveLink] = useState("Home");
   const [scrolled, setScrolled] = useState(false);
   const { scrollY } = useScroll();
+  const [language, setLanguage] = useState("EN");
+  const [showLanguageDropdown, setShowLanguageDropdown] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const toggleLanguage = () => {
+    setShowLanguageDropdown(!showLanguageDropdown);
+  };
+
+  const changeLanguage = (lang: string) => {
+    setLanguage(lang);
+    setShowLanguageDropdown(false);
+    // 这里可以添加实际的语言切换逻辑
+  };
 
   useMotionValueEvent(scrollY, "change", (latest) => {
     setScrolled(latest > 10);
@@ -112,6 +124,51 @@ export default function Navbar() {
                   )}
                 </motion.div>
               ))}
+              {/* 右侧语言选择器 */}
+              <div className="relative">
+                <button
+                  onClick={toggleLanguage}
+                  className="flex items-center space-x-1 px-3 py-2 rounded-md hover:bg-gray-700/70 transition-colors"
+                >
+                  <span className="text-gray-300">{language}</span>
+                  <ChevronDown className={`w-4 h-4 text-gray-400 transition-transform ${
+                    showLanguageDropdown ? "rotate-180" : ""
+                  }`} />
+                </button>
+
+                {/* 语言下拉菜单 */}
+                {showLanguageDropdown && (
+                  <motion.div
+                    initial={{ opacity: 0, y: -10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.2 }}
+                    className="absolute right-0 mt-2 w-24 rounded-md shadow-lg bg-gray-800/90 backdrop-blur-sm border border-gray-700 overflow-hidden"
+                  >
+                    <div className="py-1">
+                      <button
+                        onClick={() => changeLanguage("EN")}
+                        className={`block w-full text-left px-4 py-2 text-sm ${
+                          language === "EN"
+                            ? "bg-cyan-500/10 text-cyan-400"
+                            : "text-gray-300 hover:bg-gray-700"
+                        }`}
+                      >
+                        English
+                      </button>
+                      <button
+                        onClick={() => changeLanguage("CN")}
+                        className={`block w-full text-left px-4 py-2 text-sm ${
+                          language === "CN"
+                            ? "bg-cyan-500/10 text-cyan-400"
+                            : "text-gray-300 hover:bg-gray-700"
+                        }`}
+                      >
+                        简体中文
+                      </button>
+                    </div>
+                  </motion.div>
+                )}
+              </div>
             </div>
 
             {/* 移动端菜单按钮 */}
@@ -119,6 +176,7 @@ export default function Navbar() {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               className="md:hidden p-2 rounded-lg bg-gray-800/50 text-gray-300 hover:text-cyan-400 focus:outline-none"
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
             >
               <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
@@ -126,6 +184,28 @@ export default function Navbar() {
             </motion.button>
           </div>
         </div>
+        {/* 移动端菜单 */}
+        {isMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.3 }}
+            className="absolute top-16 left-0 w-full bg-gray-900/90 backdrop-blur-lg border-t border-gray-800 z-40"
+          >
+            <div className="flex flex-col space-y-2 p-4">
+              {navItems.map((item) => (
+                <a
+                  key={item.name}
+                  href={item.href}
+                  className="flex items-center space-x-2 text-sm font-medium text-gray-300 hover:text-cyan-400 transition-colors"
+                >
+                  <span>{item.icon}</span>
+                  <span>{item.name}</span>
+                </a>
+              ))}
+            </div>
+          </motion.div>
+        )}
       </motion.nav>
 
       {/* 全局样式 */}

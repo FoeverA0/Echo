@@ -1,9 +1,8 @@
 "use client"
 import React, { useEffect, useRef, useState } from 'react'
-import { motion } from 'framer-motion'
 
 export default function AutoScrollCarousel({ children }: { children: React.ReactNode }) {
-  const [duration, setDuration] = useState(30)
+  const [duration] = useState(30)
   const containerRef = useRef<HTMLDivElement>(null)
   const scrollerRef = useRef<HTMLDivElement>(null)
 
@@ -23,7 +22,7 @@ export default function AutoScrollCarousel({ children }: { children: React.React
         { transform: `translateX(-${scroller.scrollWidth / 2}px)` }
       ],
       {
-        duration: duration * 1000,
+        duration: duration * 3000,
         iterations: Infinity
       }
     )
