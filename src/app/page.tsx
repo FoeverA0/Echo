@@ -41,7 +41,7 @@ const partners = [
   { name: "Phala Network", logo: "/partners/Phala Network.png" },
   { name: "AWS", logo: "/partners/aws.png" },
   { name: "HXC", logo: "/partners/hxc.png" },
-  { name: "PolyU Innohub", logo: "/partners/innohub.png" },
+  { name: "PolyU Innohub", logo: "/partners/InnoHub.png" },
 ]
 const knowledgeAssets = [
   {
