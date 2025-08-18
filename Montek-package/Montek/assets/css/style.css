@@ -1621,6 +1621,14 @@ html {
 /* Ensure logos render as blocks to avoid baseline gaps */
 .partner-card img{ display:block; }
 
+/* Normalize academic logos (row 3) */
+.partners-row-3 .partner-card img{
+	height: 48px;
+	width: auto;
+	max-width: 180px;
+	object-fit: contain;
+}
+
 /* Responsive adjustments */
 @media (max-width: 991px){
 	.partners-row-1 .partner-card{ max-width: 360px; }
@@ -1630,4 +1638,52 @@ html {
 	.partners-row{ flex-wrap: wrap; }
 	.partners-row-2 .partner-card{ max-width: 100%; }
 	.partners-row-3{ grid-template-columns: 1fr; }
+}
+
+/* Font utilities for new section */
+.font-sora{ font-family: 'Sora', sans-serif; }
+.font-pro{ font-family: 'Be Vietnam Pro', sans-serif; }
+
+/* Feature One */
+.feature-one{ position: relative; padding: 80px 0; background-color: var(--color-four); }
+.feature-one_heading{ font-size: 42px; line-height: 1.2; color: var(--white-color); margin-bottom: 20px; }
+.feature-one_desc{ font-size: 18px; color: rgba(var(--white-color-rgb), 0.75); }
+
+.feature-grid{ display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 20px; }
+@media (max-width: 767px){ .feature-grid{ grid-template-columns: 1fr; } }
+
+.feature-card{ position: relative; padding: 20px; background-color: var(--black-color); border: 1px solid rgba(var(--white-color-rgb), 0.12); min-height: 180px; }
+.feature-card_num{ position: absolute; left: 20px; top: 18px; font-size: 14px; color: rgba(var(--white-color-rgb), 0.55); }
+.feature-card_title{ margin-top: 20px; font-size: 22px; color: var(--white-color); }
+.feature-card_text{ margin-top: 8px; font-size: 16px; color: rgba(var(--white-color-rgb), 0.75); }
+
+/* Feature One Scroll Flip Anim */
+.feature-one_cards-column{ position: relative; min-height: 520px; }
+.feature-anim-wrap{ position: sticky; top: 120px; perspective: 1200px; }
+.feature-anim-card{
+	position: absolute;
+	left: 0; right: 0; top: 0;
+	margin: 0 auto;
+	padding: 20px;
+	background-color: var(--black-color);
+	border: 1px solid rgba(var(--white-color-rgb), 0.12);
+	min-height: 260px;
+	transform-origin: center bottom;
+	transform: rotateX(90deg) translateY(60px);
+	opacity: 0;
+	box-shadow: 0 25px 60px rgba(0,0,0,0.35);
+}
+.feature-anim-card .feature-card_num{ position: absolute; left: 20px; top: 18px; font-size: 14px; color: rgba(var(--white-color-rgb), 0.55); }
+.feature-anim-card .feature-card_title{ margin-top: 20px; font-size: 22px; color: var(--white-color); }
+.feature-anim-card .feature-card_text{ margin-top: 8px; font-size: 16px; color: rgba(var(--white-color-rgb), 0.75); }
+
+/* Stacking offsets to create depth */
+.feature-anim-card.card-1{ z-index: 4; }
+.feature-anim-card.card-2{ z-index: 3; }
+.feature-anim-card.card-3{ z-index: 2; }
+.feature-anim-card.card-4{ z-index: 1; }
+
+@media (max-width: 767px){
+	.feature-one_cards-column{ min-height: 480px; }
+	.feature-anim-wrap{ top: 80px; }
 }
