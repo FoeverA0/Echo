@@ -1,4 +1,4 @@
-/* Montek Creative Agency Business HTML-5 Template */
+/* Echo Protocol  Template */
 
 /************ TABLE OF CONTENTS ***************
 1. Fonts
@@ -85,7 +85,7 @@
 	padding-top:20px;
 	padding-right:180px;
 	color: var(--white-color);
-	border-top:1px solid #540045;
+	border-top:1px solid #71DEC2;
 }
 
 .banner-one_text-two{
@@ -1341,15 +1341,15 @@ a.backtop {
     height: 60px;
     text-align: center;
     line-height: 60px;
-    border: 1px solid #770147;
+    border: 1px solid #71DEC2;
     font-size: 24px;
-    color: #930148;
+    color: #71DEC2;
 
     transition: background 0.5s ease, color 0.5s ease;
 }
 
 a.backtop:hover {
-    background: linear-gradient(45deg, #b9074c, #540045);
+    background: linear-gradient(45deg, #71DEC2, #151E2F);
     color: #fff;
 }
 

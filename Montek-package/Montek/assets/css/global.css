@@ -1,4 +1,4 @@
-/* Contra Creative Agency Business HTML-5 Template */
+/* Contra  Template */
 
 /************ TABLE OF CONTENTS ***************
 1. Fonts
@@ -36,12 +36,12 @@
 :root {
 	
 	/* #ba024a in decimal RGB */
-	--main-color: rgb(186,2,74);
-	--main-color-rgb:186,2,74;
+	--main-color: #71DEC2;
+	--main-color-rgb:#71DEC2;
 	
 	/* #540045 in decimal RGB */
-	--color-two: rgb(84,0,69);
-	--color-two-rgb:84,0,69;
+	--color-two: #151E2F;
+	--color-two-rgb:#151E2F;
 	
 	/* #120c12 in decimal RGB */
 	--color-three: rgb(18,12,18);
