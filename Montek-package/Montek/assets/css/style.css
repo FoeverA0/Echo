@@ -1687,3 +1687,49 @@ html {
 	.feature-one_cards-column{ min-height: 480px; }
 	.feature-anim-wrap{ top: 80px; }
 }
+
+.button-shiny {
+    width: fit-content;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+    color: #f8f8fa;
+    font-size: 14px;
+    font-style: normal;
+    line-height: 12px;
+    letter-spacing: .7px;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: .75rem 1rem;
+    transition: all .25s ease;
+    box-shadow: 0 4px 40px 0 hsla(0,0%,100%,.24);
+    background: radial-gradient(circle at 100% 100%,#19191a 0,#19191a 7px,transparent 0) 0 0/8px 8px no-repeat,radial-gradient(circle at 0 100%,#19191a 0,#19191a 7px,transparent 0) 100% 0/8px 8px no-repeat,radial-gradient(circle at 100% 0,#19191a 0,#19191a 7px,transparent 0) 0 100%/8px 8px no-repeat,radial-gradient(circle at 0 0,#19191a 0,#19191a 7px,transparent 0) 100% 100%/8px 8px no-repeat,linear-gradient(#19191a,#19191a) 50% 50%/calc(100% - 2px) calc(100% - 16px) no-repeat,linear-gradient(#19191a,#19191a) 50% 50%/calc(100% - 16px) calc(100% - 2px) no-repeat,linear-gradient(110deg,#fff,#555 20%,#fff 60%,#555 80%,#fff) no-repeat;
+    border-radius: 8px;
+    box-sizing: border-box
+}
+
+.button-shiny:hover {
+    transform: scale(1.01);
+    box-shadow: 0 4px 50px 0 hsla(0,0%,100%,.33)
+}
+
+.button-shiny.flat-border {
+    background: #111;
+    border: 1px solid hsla(0,0%,100%,.1);
+    box-shadow: 0 4px 10px 0 hsla(0,0%,100%,.1)
+}
+
+.button-shiny.flat-border:hover {
+    background: #111;
+    border-color: hsla(0,0%,100%,.2);
+    box-shadow: 0 4px 20px 0 hsla(0,0%,100%,.1)
+}
+
+/* Launch Button Container - 只负责居中，不改变按钮样式 */
+.launch-button-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 2.5rem;
+    margin-bottom: 2rem;
+}
