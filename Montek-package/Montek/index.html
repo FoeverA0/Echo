@@ -113,11 +113,56 @@
 			</div>
 			<div class="down-box scroll-to-target" data-target=".gallery-one">
 				<div class="launch-button-container">
-					<a href="https://www.magicnewton.com/" class="button-shiny" aria-label="Launch Echo">
+					<a id="launch-echo-btn" class="button-shiny" aria-label="Launch Echo">
 						Launch Echo <img alt="New Window" loading="lazy" width="16" height="16" decoding="async" src="assets/images/icons/icon-1.png"/>
 					</a>
 				</div>
 			</div>
+			<div id="echo-modal" class="echo-modal">
+				<div class="echo-modal-content">
+					<span class="echo-modal-close" id="echo-modal-close">&times;</span>
+					<h2 class="echo-modal-title">Bind AI Payment</h2>
+					<form class="echo-modal-form echo-modal-form-grid">
+						<div class="echo-modal-form-col">
+							<label for="ai-id">AI ID</label>
+							<input type="text" id="ai-id" name="ai-id" placeholder="Enter AI ID" required>
+
+							<label for="single-limit">Single Transaction Limit</label>
+							<input type="number" id="single-limit" name="single-limit" placeholder="≤50 USDC per payment" required>
+
+							<label for="daily-limit">Daily Transaction Limit</label>
+							<input type="number" id="daily-limit" name="daily-limit" placeholder="≤100 USDC/day" required>
+
+							<label for="gas-limit">Gas Fee Limit</label>
+							<input type="number" id="gas-limit" name="gas-limit" placeholder="≤20 gwei" required>
+
+							<label for="whitelist">Recipient Allowlist</label>
+							<input type="text" id="whitelist" name="whitelist" placeholder="Only approved addresses (e.g., 0xAPIProvider)" required>
+
+							<!-- <label for="time-window">Time Window</label>
+							<input type="text" id="time-window" name="time-window" placeholder="9 AM–5 PM UTC" required> -->
+						</div>
+						<div class="echo-modal-form-col">
+							<label for="token-type">Token Type</label>
+							<input type="text" id="token-type" name="token-type" placeholder="USDC only" required>
+
+							<label for="expiration">Expiration</label>
+							<input type="number" id="expiration" name="expiration" placeholder="30 days" required>
+
+							<label for="frequency">Transaction Frequency</label>
+							<input type="number" id="frequency" name="frequency" placeholder="≤3 transactions/day" required>
+
+							<label for="market-conditions">Market Conditions</label>
+							<input type="text" id="market-conditions" name="market-conditions" placeholder="Stable USDC/ETH price (±1%)" required>
+
+							<label for="network">Network</label>
+							<input type="text" id="network" name="network" placeholder="Arbitrum only" required>
+						</div>
+						<button type="submit" class="button-shiny echo-modal-bind-btn">Bind</button>
+					</form>
+				</div>
+			</div>
+			<!-- End Content Column -->
 		</div>
 	</section>
 	<!-- End Banner One -->
@@ -413,6 +458,19 @@
 <script src="assets/js/ScrollToPlugin.min.js"></script>
 <script src="assets/js/ScrollSmoother.min.js"></script>
 <script src="assets/js/script.js"></script>
+<script>
+document.getElementById('launch-echo-btn').onclick = function(e) {
+    e.preventDefault();
+    document.getElementById('echo-modal').classList.add('show');
+};
+document.getElementById('echo-modal-close').onclick = function() {
+    document.getElementById('echo-modal').classList.remove('show');
+};
+// 点击遮罩关闭弹窗
+document.getElementById('echo-modal').onclick = function(e) {
+    if (e.target === this) this.classList.remove('show');
+};
+</script>
 <!--[if lt IE 9]><script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script><![endif]-->
 <!--[if lt IE 9]><script src="js/respond.js"></script><![endif]-->
 
