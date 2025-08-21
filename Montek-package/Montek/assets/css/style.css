@@ -100,14 +100,15 @@
 
 .banner-one .down-box{
 	position:absolute;
-	left:47%;
+	left:50%;
 	bottom:65px;
 	z-index:10;
-	width:125px;
+	width:200px;
 	height:125px;
 	cursor:pointer;
-	-webkit-animation: icon-bounce 0.8s ease-out infinite;
-    animation: icon-bounce 0.8s ease-out infinite;
+	transform: translateX(-50%);
+	/* -webkit-animation: icon-bounce 0.8s ease-out infinite;
+    animation: icon-bounce 0.8s ease-out infinite; */
 }
 
 /*** 
@@ -1732,4 +1733,5 @@ html {
     justify-content: center;
     margin-top: 2.5rem;
     margin-bottom: 2rem;
+	cursor:pointer;
 }
